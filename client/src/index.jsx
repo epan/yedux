@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import axios from 'axios';
-import data from './dummy_data.js';
 import AlbumList from './components/AlbumList';
 import NewAlbumForm from './components/NewAlbumForm';
 
@@ -23,33 +21,25 @@ class App extends React.Component {
   }
 
   getAllAlbums () {
-    $.ajax({
-      method: 'GET',
-      url: '/api/albums',
-      success: (data) => {
-        this.setState({
-          albums: data
-        });
-      },
-      error: (err) => {
-        console.log('ERROR (GET Albums):', err);
-      }
+    axios.get('/api/albums')
+    .then(({data}) => {
+      this.setState({
+        albums: data
+      })
     })
+    .catch((err) => {
+      console.error('[GET Albums]', err);
+    });
   }
 
   submitAlbum (newAlbum) {
-    $.ajax({
-      method: 'POST',
-      url: '/api/albums',
-      contentType: 'application/json',
-      data: JSON.stringify(newAlbum),
-      success: (data) => {
-        this.getAllAlbums();
-      },
-      error: (err) => {
-        console.log('ERROR (Submit Album):', err);
-      }
+    axios.post('/api/albums', newAlbum)
+    .then((response) => {
+      this.getAllAlbums();
     })
+    .catch((err) => {
+      console.error('[POST Albums]', err);
+    });
   }
 
   render() {
