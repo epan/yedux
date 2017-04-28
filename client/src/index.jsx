@@ -12,7 +12,9 @@ class App extends React.Component {
     this.state = {
       albums: []
     };
+  }
 
+  componentDidMount () {
     $.ajax({
       url: '/api/albums',
       method: 'GET',
