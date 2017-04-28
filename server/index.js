@@ -12,7 +12,18 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.get('/api/albums', (req, res) => {
   db.getAllAlbums((err, data) => {
     if (err) {
-      res.send(501, err);
+      res.status(501).send(err);
+    } else {
+      res.send(data);
+    }
+  });
+});
+
+app.post('/api/albums', (req, res) => {
+  console.log('POST req.body:', typeof req.body, req.body);
+  db.addAlbum(req.body, (err, data) => {
+    if (err) {
+      res.status(501).send(err);
     } else {
       res.send(data);
     }

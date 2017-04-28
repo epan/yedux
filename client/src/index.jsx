@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import axios from 'axios';
 import data from './dummy_data.js';
 import AlbumList from './components/AlbumList';
 import NewAlbumForm from './components/NewAlbumForm';
@@ -14,6 +15,7 @@ class App extends React.Component {
     };
 
     this.getAllAlbums = this.getAllAlbums.bind(this);
+    this.submitAlbum = this.submitAlbum.bind(this);
   }
 
   componentDidMount () {
@@ -22,26 +24,32 @@ class App extends React.Component {
 
   getAllAlbums () {
     $.ajax({
-      url: '/api/albums',
       method: 'GET',
+      url: '/api/albums',
       success: (data) => {
         this.setState({
           albums: data
         });
       },
       error: (err) => {
-        console.log('ERROR:', err);
+        console.log('GET ALBUMS ERROR:', err);
       }
     })
   }
 
   submitAlbum (newAlbum) {
+    console.log('POST newAlbum:', newAlbum);
     $.ajax({
-      url: '/api/albums',
-      data: newAlbum,
       method: 'POST',
-      success: () => {},
-      error: () => {}
+      url: '/api/albums',
+      contentType: 'application/json',
+      data: JSON.stringify(newAlbum),
+      success: (data) => {
+        console.log('Submit success response:', data);
+      },
+      error: (err) => {
+        console.log('SUBMIT ALBUM ERROR:', err);
+      }
     })
   }
 
@@ -49,7 +57,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Yedux</h1>
-        <NewAlbumForm />
+        <NewAlbumForm submitAlbum={this.submitAlbum} />
         <AlbumList albums={this.state.albums} />
       </div>
     );
