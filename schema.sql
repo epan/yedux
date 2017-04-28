@@ -2,10 +2,15 @@ DROP DATABASE IF EXISTS yedux;
 
 CREATE DATABASE yedux;
 
-USE catslist;
+USE yedux;
 
 CREATE TABLE kanyes (
-  /* Fill this in here */
+  id INT NOT NULL AUTO_INCREMENT,
+  era VARCHAR(50),
+  year INT(4),
+  description TEXT,
+  imageUrl VARCHAR(200),
+  PRIMARY KEY (id)
 );
 
 
