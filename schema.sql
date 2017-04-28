@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS yedux;
 
 CREATE DATABASE yedux;
 
-USE catslist;
+USE yedux;
 
 CREATE TABLE kanyes (
   /* Fill this in here */
