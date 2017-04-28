@@ -6,12 +6,11 @@ var connection = mysql.createConnection(mysqlConfig);
 var getAllAlbums = function(cb) {
   connection.query('SELECT * FROM KANYES', (err, results, fields) => {
     if (err) {
-      console.log('ERROR:', err);
+      cb(err, null);
+    } else {
+      cb(null, results);
     }
-    console.log('RESULTS:', results);
   });
 }
-
-getAllAlbums();
 
 module.exports.getAllAlbums = getAllAlbums;

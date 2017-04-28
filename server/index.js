@@ -10,7 +10,13 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 app.get('/api/albums', function (req, res) {
-
+  db.getAllAlbums((err, data) => {
+    if (err) {
+      res.send(501, err);
+    } else {
+      res.send(data);
+    }
+  });
 });
 
 app.listen(3000, function () {
