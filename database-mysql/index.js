@@ -25,11 +25,8 @@ const getAllAlbums = (cb) => {
 }
 
 const addAlbum = (newAlbum, cb) => {
-  console.log('STARTED addAlbum controller on:', newAlbum);
   var columns = `(era, year, description, imageUrl)`;
   var values = `('${newAlbum.name}', ${newAlbum.year}, '${newAlbum.description}', '${newAlbum.imageUrl}')`;
-
-  console.log('SQL INSERT:', `INSERT INTO kanyes ${columns} VALUES ${values}`);
 
   connection.query(`INSERT INTO kanyes ${columns} VALUES ${values}`, (err, results, fields) => {
     if (err) {

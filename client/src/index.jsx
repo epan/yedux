@@ -32,23 +32,22 @@ class App extends React.Component {
         });
       },
       error: (err) => {
-        console.log('GET ALBUMS ERROR:', err);
+        console.log('ERROR (GET Albums):', err);
       }
     })
   }
 
   submitAlbum (newAlbum) {
-    console.log('POST newAlbum:', newAlbum);
     $.ajax({
       method: 'POST',
       url: '/api/albums',
       contentType: 'application/json',
       data: JSON.stringify(newAlbum),
       success: (data) => {
-        console.log('Submit success response:', data);
+        this.getAllAlbums();
       },
       error: (err) => {
-        console.log('SUBMIT ALBUM ERROR:', err);
+        console.log('ERROR (Submit Album):', err);
       }
     })
   }
