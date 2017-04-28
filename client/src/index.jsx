@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import data from './dummy_data.js';
-import AlbumList from './components/AlbumList.jsx';
+import AlbumList from './components/AlbumList';
+import NewAlbumForm from './components/NewAlbumForm';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Yedux</h1>
+        <NewAlbumForm />
         <AlbumList albums={this.state.albums} />
       </div>
     );
