@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack --watch"
   },
   "author": "Zak Golding <zak@0x7cf.com>",
   "license": "UNLICENSED",
