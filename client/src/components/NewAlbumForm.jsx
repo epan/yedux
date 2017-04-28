@@ -40,7 +40,13 @@ class NewAlbumForm extends React.Component {
           />
         </label>
         <div><input type="button" value="Add Album" onClick={() => {
-          this.props.submitAlbum(this.state)
+          this.props.submitAlbum(this.state);
+          this.setState({
+            name: '',
+            year: '',
+            description: '',
+            imageUrl: ''
+          });
         }}/></div>
       </div>
     )
