@@ -12,9 +12,15 @@ class App extends React.Component {
     this.state = {
       albums: []
     };
+
+    this.getAlbums = this.getAlbums.bind(this);
   }
 
   componentDidMount () {
+    this.getAlbums();
+  }
+
+  getAlbums () {
     $.ajax({
       url: '/api/albums',
       method: 'GET',
@@ -26,6 +32,16 @@ class App extends React.Component {
       error: (err) => {
         console.log('ERROR:', err);
       }
+    })
+  }
+
+  submitAlbum (newAlbum) {
+    $.ajax({
+      url: '/api/albums',
+      data: newAlbum,
+      method: 'POST',
+      success: () => {},
+      error: () => {}
     })
   }
 
