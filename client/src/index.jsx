@@ -13,14 +13,14 @@ class App extends React.Component {
       albums: []
     };
 
-    this.getAlbums = this.getAlbums.bind(this);
+    this.getAllAlbums = this.getAllAlbums.bind(this);
   }
 
   componentDidMount () {
-    this.getAlbums();
+    this.getAllAlbums();
   }
 
-  getAlbums () {
+  getAllAlbums () {
     $.ajax({
       url: '/api/albums',
       method: 'GET',
