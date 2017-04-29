@@ -1,10 +1,25 @@
-var mysql = require('mysql');
-var mysqlConfig = require('./config.js');
+const mysqlConfig = require('./config.js');
+const knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    host: '127.0.0.1',
+    user: 'root',
+    password: '',
+    charset: 'utf8',
+    database: 'yedux'
+  }
+});
 
-var connection = mysql.createConnection(mysqlConfig);
-
-var getAllAlbums = function() {
-
+const getAllAlbums = function() {
+  knex.select().from('kanyes')
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.error('getAllAlbums', err);
+  });
 }
+
+getAllAlbums();
 
 module.exports.getAllAlbums = getAllAlbums;
