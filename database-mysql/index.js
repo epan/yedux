@@ -16,4 +16,11 @@ const getAllAlbums = (cb) => {
     .catch((err) => { cb(err, null) });
 }
 
+const addAlbum = (album, cb) => {
+  knex('kanyes').insert(album)
+    .then((data) => { cb(null, data) })
+    .catch((err) => { cb(err, null) });
+}
+
 module.exports.getAllAlbums = getAllAlbums;
+module.exports.addAlbum = addAlbum;

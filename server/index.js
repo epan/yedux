@@ -15,9 +15,19 @@ app.get('/api/albums', (req, res) => {
     if (err) {
       res.status(501).send(err);
     } else {
-      res.status(200).send(data);
+      res.send(data);
     }
   });
+});
+
+app.post('/api/albums', (req, res) => {
+  db.addAlbum(req.body, (err, data) => {
+    if (err) {
+      res.status(501).send(err);
+    } else {
+      res.send(data);
+    }
+  })
 });
 
 app.listen(3000, () => {

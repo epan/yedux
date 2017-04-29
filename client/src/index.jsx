@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import data from './dummy_data.js';
 import AlbumList from './components/AlbumList.jsx';
+import AddAlbumForm from './components/AddAlbumForm';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
     }
 
     this.getAllAlbums = this.getAllAlbums.bind(this);
+    this.addAlbum = this.addAlbum.bind(this);
   }
 
   componentDidMount () {
@@ -31,10 +33,22 @@ class App extends React.Component {
       })
   }
 
+  addAlbum (album) {
+    axios.post('/api/albums', album)
+      .then((data) => {
+        console.log(data);
+        this.getAllAlbums();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   render() {
     return (
       <div>
         <h1>Yedux</h1>
+        <AddAlbumForm addAlbum={this.addAlbum}/>
         <AlbumList albums={this.state.albums} />
       </div>
     );
