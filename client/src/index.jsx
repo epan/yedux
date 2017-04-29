@@ -35,7 +35,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Yedux</h1>
-        <AlbumList />
+        <AlbumList albums={this.state.albums} />
       </div>
     );
   }
