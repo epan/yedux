@@ -35,7 +35,6 @@ class App extends React.Component {
   addAlbum (album) {
     axios.post('/api/albums', album)
       .then((data) => {
-        console.log(data);
         this.getAllAlbums();
       })
       .catch((err) => {
