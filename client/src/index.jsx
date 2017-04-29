@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import data from './dummy_data.js';
-import AlbumList from './components/AlbumList.jsx';
+import AlbumList from './components/AlbumList';
 import AddAlbumForm from './components/AddAlbumForm';
 
 class App extends React.Component {
