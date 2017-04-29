@@ -19,5 +19,9 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  resolve: {
+    extensions: ['.json', '.js', '.jsx']
+  },
+  devtool: 'source-map'
 };
