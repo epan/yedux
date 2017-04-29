@@ -10,16 +10,10 @@ const knex = require('knex')({
   }
 });
 
-const getAllAlbums = function() {
+const getAllAlbums = (cb) => {
   knex.select().from('kanyes')
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((err) => {
-    console.error('getAllAlbums', err);
-  });
+    .then((data) => { cb(null, data) })
+    .catch((err) => { cb(err, null) });
 }
-
-getAllAlbums();
 
 module.exports.getAllAlbums = getAllAlbums;

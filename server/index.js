@@ -1,19 +1,25 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var db = require('../database-mysql');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const db = require('../database-mysql');
+const morgan = require('morgan');
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
-
+app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
-app.get('/api/albums', function (req, res) {
-
+app.get('/api/albums', (req, res) => {
+  db.getAllAlbums((err, data) => {
+    if (err) {
+      res.status(501).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
 });
 
-app.listen(3000, function () {
-  console.log('listening on port 3000!');
+app.listen(3000, () => {
+  console.log('listening on port 3000');
 });
-
